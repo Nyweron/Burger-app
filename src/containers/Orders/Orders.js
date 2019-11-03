@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Order from "../../components/Order/Order";
 import axios from "../../axios-orders";
-import withErrorHandler from '../../higherOrderComponent/withErrorHandler/withErrorHandler';
+import withErrorHandler from "../../higherOrderComponent/withErrorHandler/withErrorHandler";
 
 class Orders extends Component {
   state = {
@@ -14,26 +14,33 @@ class Orders extends Component {
       .get("/orders")
       .then(res => {
         const fetchOrders = [];
-        for(let key in res.data){
+        for (let key in res.data) {
           fetchOrders.push({
             ...res.data[key],
             id: key
           });
         }
 
-        console.log(fetchOrders)
         this.setState({ loading: false, orders: fetchOrders });
+        console.log(this.state.orders)
       })
       .catch(err => {
         this.setState({ loading: false });
       });
   }
 
+
+
   render() {
     return (
       <div>
-        <Order />
-        <Order />
+        {this.state.orders.map(order => (
+          <Order
+            key={order.id}
+            ingredients={order.ingredients}
+            price={+order.price}
+          />
+        ))}
       </div>
     );
   }

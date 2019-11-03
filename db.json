@@ -1,5 +1,46 @@
 {
-  "orders": [],
+  "orders": [
+    {
+      "ingredients": {
+        "meat": 0,
+        "salad": 2,
+        "bacon": 0,
+        "cheese": 2
+      },
+      "price": "5.800000000000001",
+      "customer": {
+        "name": "John Black",
+        "address": {
+          "street": "Washington 2",
+          "zipCode": "123456",
+          "country": "Poland"
+        },
+        "email": "test@test.com"
+      },
+      "deliveryMethod": "fastest",
+      "id": 1
+    },
+    {
+      "ingredients": {
+        "meat": 2,
+        "salad": 1,
+        "bacon": 1,
+        "cheese": 2
+      },
+      "price": "9.4",
+      "customer": {
+        "name": "John Black",
+        "address": {
+          "street": "Washington 2",
+          "zipCode": "123456",
+          "country": "Poland"
+        },
+        "email": "test@test.com"
+      },
+      "deliveryMethod": "fastest",
+      "id": 2
+    }
+  ],
   "ingredients": {
     "meat": 0,
     "salad": 0,
