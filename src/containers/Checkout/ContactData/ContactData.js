@@ -83,7 +83,7 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: "",
+        value: "fastest",/*simple solution to fix bug... TODO to fix this*/
         validation: {},
         valid: true
       }
