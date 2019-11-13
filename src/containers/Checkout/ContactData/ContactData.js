@@ -5,7 +5,6 @@ import axios from "../../../axios-orders";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
 import { connect } from "react-redux";
-import { stat } from "fs";
 
 class ContactData extends Component {
   state = {
