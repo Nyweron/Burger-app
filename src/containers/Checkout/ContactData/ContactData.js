@@ -5,7 +5,7 @@ import axios from "../../../axios-orders";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
 import { connect } from "react-redux";
-import withErrorHandler from '../../../higherOrderComponent/Auxiliary/Auxiliary';
+import withErrorHandler from '../../../higherOrderComponent/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
 
 class ContactData extends Component {
