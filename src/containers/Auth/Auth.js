@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Auth.module.css";
-import * as actions from '../../store/actions/auth';
-
+import * as actions from "../../store/actions/auth";
 
 class Auth extends Component {
   state = {
@@ -37,7 +36,8 @@ class Auth extends Component {
         valid: false,
         touched: false
       }
-    }
+    },
+    isSignup: true
   };
 
   checkValidity(value, rules) {
@@ -87,10 +87,20 @@ class Auth extends Component {
     this.setState({ controls: updatedControls });
   };
 
-submitHandler = (event) => {
-  event.preventDefault();
-  this.props.onAuth(this.state.controls.email.value, this.state.controls.password.valid);
-}
+  submitHandler = event => {
+    event.preventDefault();
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.isSignup
+    );
+  };
+
+  switchAuthModeHandler = () => {
+    this.setState(prevState => {
+      return { isSignup: !prevState.isSignup };
+    });
+  };
 
   render() {
     const formElementsArray = [];
@@ -103,6 +113,7 @@ submitHandler = (event) => {
 
     const form = formElementsArray.map(formElement => (
       <Input
+        type={formElement}
         key={formElement.id}
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
@@ -120,6 +131,9 @@ submitHandler = (event) => {
           {form}
           <Button btnType="Success">SUBMIT</Button>
         </form>
+        <Button clicked={this.switchAuthModeHandler} btnType="Danger">
+          SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
+        </Button>
       </div>
     );
   }
@@ -127,7 +141,8 @@ submitHandler = (event) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
+    onAuth: (email, password, isSignup) =>
+      dispatch(actions.auth(email, password, isSignup))
   };
 };
 
