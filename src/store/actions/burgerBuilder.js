@@ -25,13 +25,13 @@ export const setIngredients = ingredients => {
 export const fetchIngredientsFailed = () => {
   return {
     type: actionTypes.FETCH_INGREDIENTS_FAILED
-  }
-}
+  };
+};
 
 export const initIngredients = () => {
   return dispatch => {
     axios
-      .get("http://localhost:6346/ingredients")
+      .get("/ingredients.json")
       .then(response => {
         dispatch(setIngredients(response.data));
       })
